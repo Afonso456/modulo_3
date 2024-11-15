@@ -2,7 +2,6 @@ def soma():
     """
     A função soma os valores 10 e 5.
     """
-    
     print(10+5)
 def soma2(x,y):
     """
