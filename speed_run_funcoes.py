@@ -128,4 +128,4 @@ def verificar_palindromo(palavra):
     """
     resultado= palavra == inverter_string(palavra)
     return resultado
-print(verificar_palindromo("radar"))
+#print(verificar_palindromo("radar"))

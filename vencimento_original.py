@@ -5,53 +5,55 @@ por hora. Caso o trabalhador tenho mais do que 8 horas de trabalho deve receber,
 Caso tenha trabalhado mais do que 10 horas por dia deve receber 50% por cada hora além das 10 horas.
 """
 
-def PedirNomeTrabalhador(nome:str):
+def PedirNomeTrabalhador():
     """Esta função deve pedir o nome do trabalhador. O nome deve ter pelo menos 3 letras."""
-    tamanho= len[nome]
-    if tamanho == 8:
-        PedirNomeTrabalhador()
-    else:
-        print("Insira um nome maior")
+    nome=""
+    while len(nome) < 3:
+        nome= input("Introduza um nome com pelo menos 3 letras:")
+    return nome
 
-def PedirHorasTrabalho(horas_trabalho):
+def PedirHorasTrabalho():
     """Esta função pede ao utilizador quantas horas trabalho no dia. O nº de horas deve ser superior a zero."""
-    if horas_trabalho < 0:
-        print("Insira um numero dse horas valido")
-        PedirHorasTrabalho()
+    horas= 0
+    while horas <= 0:
+        horas= float(input("Introduza quantas horas trabalhou:"))
+    return horas
 
-
-def PedirOrdenado(ordenado):
+def PedirOrdenado():
     """Esta função pede ao utilizado quanto ganha por cada hora de trabalho"""
-    if ordenado < 0:
-        print("Insira um valor valido")
-        PedirOrdenado()
+    ordenado = float(input("Quanto ganha por cada hora de trabalho:"))
+    return ordenado
 
-def MostrarVencimento(nome,horas,ordenado_por_hora):
+def MostrarVencimento(nome,horas,ordenado_por_hora): 
     """Esta função deve mostrar o nome do trabalhador e quanto é que deve receber pelo dia de trabalho"""
-    if len[nome] < 3:
-        print("Insira um nome maior")
-    ordenado= PedirOrdenado(ordenado)
-    ordenado_por_hora= horas * ordenado
     if horas > 8:
-        ordenado_por_hora= ordenado + 0.25
-    elif horas > 10:
-        ordenado_por_hora= ordenado + 0.5
-        return ordenado_por_hora
-    pass
+        horas_normais= 8
+    else:
+        horas_normais= horas
+    #horas com bons de 25%
+    horas_extra = horas - 8
+    if horas_extra > 2:
+        horas_extra= 2
+    #horas com bonus de 50%
+    horas_extra_extra= horas - horas_normais - horas_extra
+    if horas_extra < 0:
+        horas_extra = 0
+    if horas_extra_extra < 0:
+        horas_extra_extra = 0
+    ordenado = (horas_normais *ordenado_por_hora) +(horas_extra * ordenado_por_hora * 0.25) + (horas_extra_extra * ordenado_por_hora * 1.5)
+    print(f"{nome} vai receber {ordenado} € por {horas} horas de trabalho")
 
 def main():
     # Função principal do programa
 
     # pedir o nome do trabalhador
-    nome= input("Insira o seu nome:")
-    PedirNomeTrabalhador(nome)
+    nome= PedirNomeTrabalhador()
     # pedir as horas que trabalhou
-    horas_trabalho= input("Insira as horas de trabalho:")
-    PedirHorasTrabalho(horas_trabalho)
+    horas= PedirHorasTrabalho()
     # pedir o ordenado por hora
-    ordenado= input("Insira o seu ordenado:")
-    PedirOrdenado(ordenado)
-    # calcular e mostrar o vencimento~
+    ordenado= PedirOrdenado()   
+    # calcular e mostrar o vencimento
+    MostrarVencimento(nome,horas,ordenado)
     pass
 if __name__=="__main__":
     main()
