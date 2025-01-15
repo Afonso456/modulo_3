@@ -31,9 +31,9 @@ def duracao(dinheiro):
 def main():
     dinheiro=assalto()
     partes(dinheiro)
-    duracao(chefe)
-    duracao(capangas)
-    duracao(condutor)
+    chefe=duracao(chefe)
+    capangas=duracao(capangas)
+    condutor=duracao(condutor)
     
 
 if __name__ == "__main__":
